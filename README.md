@@ -25,4 +25,5 @@ Log in and run the following.
 On the host run the following.
 
     vagrant package --base xenial64
-    vagrant box add marcv81/xenial64 package.box
+
+Upload `package.box` to https://atlas.hashicorp.com/.
