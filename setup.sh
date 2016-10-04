@@ -15,6 +15,17 @@ mount -o loop,ro VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
 umount /mnt
 rm VBoxGuestAdditions_$VBOX_VERSION.iso
 
+# Disable automatic updates
+cat << EOF > /etc/apt/apt.conf.d/10periodic
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Download-Upgradeable-Packages "0";
+APT::Periodic::AutocleanInterval "0";
+EOF
+cat << EOF > /etc/apt/apt.conf.d/20auto-upgrades
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+EOF
+
 # Install SSH server
 apt-get install -y openssh-server
 
